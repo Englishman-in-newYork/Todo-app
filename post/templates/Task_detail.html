@@ -1,0 +1,34 @@
+{% extends "Main.html" %}
+
+{% block title %}
+    Task details
+{% endblock %}
+{% block project %}
+    <br>
+    {% for task in tasks %}
+    <a href="{% url "task_update" task.id %}">
+        <button class="btn btn-warning"><i class="fas fa-plus-circle"></i>Update Task</button>
+    </a>
+    {% endfor %}
+{% endblock project %}
+{% block content %}
+    <div class="features">
+        {% for el in tasks %}
+            <h2 class="task-title">
+                {{ el.title }}
+            </h2>
+            <hr>
+            <h3 class="task-description">
+                {{ el.description }}
+            </h3><br>
+            <h4 class="task-user">
+                Created by: {{ el.user }}
+            </h4><br>
+            Status: {{ el.status_task }}, created {{ el.create_date }}
+            <br>
+        {% endfor %}
+
+    </div>
+
+
+{% endblock %}

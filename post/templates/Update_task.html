@@ -1,0 +1,18 @@
+{% extends "Main.html" %}
+
+{% block title %}
+    Adding tasks
+{% endblock %}
+{% block content %}
+    <div class="features">
+        <h1>Form for updating tasks</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.title }}<br>
+            {{ form.description }}<br>
+            {{ form.status_task }}<br>
+            <span>{{ error }}</span>
+            <button class="btn btn-success" type="submit">Update task</button>
+        </form>
+    </div>
+{% endblock %}

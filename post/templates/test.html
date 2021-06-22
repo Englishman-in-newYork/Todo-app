@@ -1,0 +1,16 @@
+{% extends "Main.html" %}
+
+{% block title %}
+    Prject Tasks
+{% endblock %}
+{% block project %}
+    <a href="{% url "create_task" %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add new task</button> </li></a>
+{% endblock project %}
+{% block content %}
+    <div class="features">
+        {% for task in tasks %}
+            <a href="{% url "task" task.pk  %}"></a>
+        {% endfor %}
+
+    </div>
+{% endblock %}

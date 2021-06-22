@@ -1,0 +1,17 @@
+{% extends "Main.html" %}
+
+{% block title %}
+    Projects
+{% endblock %}
+{% block content %}
+    <div class="features">
+        <h1>Form for adding projects</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.title }}<br>
+            {{ form.user }}<br>
+            <span>{{ error }}</span>
+            <button class="btn btn-success" type="submit">Add new project</button>
+        </form>
+    </div>
+{% endblock %}

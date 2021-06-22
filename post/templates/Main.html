@@ -1,0 +1,32 @@
+{%  load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static "css/main.css" %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+</head>
+<body>
+<div class="left-bar"style="height: auto; box-sizing: border-box" >
+    <aside>
+        <span class="logo">My Todo</span>
+        <br>
+        Hello {{ user.username }}
+        <h3>Navigation</h3>
+        <ul>
+            <a href="{% url "Main" %}"><li><i class="fas fa-home"></i>Home</li></a>
+            <a href="#"><li><i class="far fa-newspaper"></i>My projects</li></a>
+            {% block project %}{% endblock project %}
+        </ul>
+    </aside>
+    <main>
+    <div class="container-fluid">
+        {% block content %}
+        {% endblock %}
+    </div>
+    </main>
+</div>
+</body>
+</html>

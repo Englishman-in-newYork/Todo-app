@@ -1,0 +1,26 @@
+{% extends "Main.html" %}
+
+{% block title %}
+    Projects
+{% endblock %}
+{% block project %}
+    <a href="{% url "create_project" %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Create new project</button> </li></a>
+{% endblock project %}
+{% block content %}
+    <div class="features">
+        <h1>Latest projects</h1>
+        {% for project in projects %}
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100 w-100">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="{% url "project_tasks" project.id %}">Project : {{ project.title }}</a>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

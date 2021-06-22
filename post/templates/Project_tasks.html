@@ -1,0 +1,62 @@
+{% extends "Main.html" %}
+
+{% block title %}
+    Project Tasks
+{% endblock %}
+{% block project %}
+    {% for project in project_key %}
+        <a href="{% url "create_task" project.id %}">
+    {% endfor %}
+<li>
+    <button class="btn btn-info"><i class="fas fa-plus-circle"></i>Add new task</button>
+</li>
+</a>
+{% for project in project_key %}
+<form action="{% url "project_tasks" project.id %}" method="get">
+{% endfor %}
+    <div class="left-side my-4">
+        <h3 class="search-head editContent">Status</h3>
+            <ul class="layout-box-list">
+                {% for status in statuses %}
+                    <li class="editContent">
+                        <input type="checkbox" class="checked" name="filter">
+                        <span class="span editContent">{{ status }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+    </div>
+    <button class="btn btn-outline-success my-2 my-sm-0" style="padding-left: 50px" type="submit">Search</button>
+</form>
+
+{% endblock project %}
+{% block content %}
+    <div class="form-row">
+        {% for project in project_key %}
+            <form class="form-inline my-2 my-lg-0" style="padding: 30px" action="{% url "project_tasks" project.id %}"
+                  method="get">
+        {% endfor %}
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+    <div class="features">
+        <h1>{{ projects.title }} tasks:</h1>
+        {% for task in tasks %}
+            {% if task.status_task == "Implementation" %}
+                <div class="card h-100 w-100" style="background-color:aqua">
+            {% elif task.status_task == "Waiting" %}
+                <div class="card h-100 w-100">
+            {% elif task.status_task == "Verifying" %}
+                <div class="card h-100 w-100" style="background-color: orangered">
+            {% elif task.status_task == "Releasing" %}
+                <div class="card h-100 w-100" style="background-color:darkgreen">
+            {% endif %}
+        <div class="card-body">
+            <h4 class="card-title">
+                <a href="{% url "task_detail" task.id %}">{{ task.title }}</a>
+            </h4>
+        </div>
+        </div>
+        {% endfor %}
+        </div>
+{% endblock %}
